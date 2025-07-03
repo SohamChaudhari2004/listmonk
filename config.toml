@@ -13,7 +13,4 @@ ssl_mode = "disable"
 max_open = 25
 max_idle = 25
 max_lifetime = "300s"
-command: >
-  sh -c "./listmonk --install --idempotent --yes --config /listmonk/config.toml &&
-         ./listmonk --upgrade --yes --config /listmonk/config.toml &&
-         ./listmonk --config /listmonk/config.toml"
+
