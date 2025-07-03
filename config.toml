@@ -1,0 +1,19 @@
+[app]
+address = "0.0.0.0:9000"
+admin_user = "admin"
+admin_password = "secretAdminPwd"
+
+[db]
+host = "db"
+port = 5432
+user = "listmonk"
+password = "listmonk"
+database = "listmonk"
+ssl_mode = "disable"
+max_open = 25
+max_idle = 25
+max_lifetime = "300s"
+command: >
+  sh -c "./listmonk --install --idempotent --yes --config /listmonk/config.toml &&
+         ./listmonk --upgrade --yes --config /listmonk/config.toml &&
+         ./listmonk --config /listmonk/config.toml"
