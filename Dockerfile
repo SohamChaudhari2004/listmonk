@@ -1,8 +1,14 @@
 
 
 FROM listmonk/listmonk:latest
-ENV LISTMONK_DB__HOST=...
-RUN ./listmonk --install --yes --upgrade
-CMD ["./listmonk"]
-EXPOSE 9000
 
+WORKDIR /listmonk
+
+COPY config.toml /listmonk/config.toml
+
+# Install and upgrade DB, then start server
+CMD ["sh", "-c", "\
+  ./listmonk --install --idempotent --yes --config /listmonk/config.toml && \
+  ./listmonk --upgrade --yes --config /listmonk/config.toml && \
+  ./listmonk --config /listmonk/config.toml \
+"]
