@@ -1,8 +1,8 @@
+
+
 FROM listmonk/listmonk:latest
+ENV LISTMONK_DB__HOST=...
+RUN ./listmonk --install --yes --upgrade
+CMD ["./listmonk"]
+EXPOSE 9000
 
-WORKDIR /listmonk
-
-COPY docker-compose.yml .  # optional if not using compose
-COPY config.toml /listmonk/config.toml
-
-CMD ["./listmonk", "--config", "/listmonk/config.toml", "--install", "--upgrade", "--yes"]
